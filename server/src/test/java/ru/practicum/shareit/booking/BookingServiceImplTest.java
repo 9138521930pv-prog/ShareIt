@@ -14,7 +14,6 @@ import ru.practicum.shareit.booking.dto.BookingDtoResponse;
 import ru.practicum.shareit.booking.model.Booking;
 import ru.practicum.shareit.booking.model.State;
 import ru.practicum.shareit.booking.model.Status;
-import ru.practicum.shareit.exception.NotFoundException;
 import ru.practicum.shareit.exception.ValidationException;
 import ru.practicum.shareit.item.ItemRepository;
 import ru.practicum.shareit.item.dto.ItemDto;
@@ -223,22 +222,6 @@ public class BookingServiceImplTest {
         bookingListAll.add(booking);
         Sort sort = Sort.by("start").descending();
 
-
-/*
-Sort sort = Sort.by("start").descending();
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        LocalDateTime currentTime = LocalDateTime.now();
-
-        List<Booking> bookings = switch (bookingState) {
-            case ALL -> bookingRepository.findByBooker_Id(userId, sort);
-            case CURRENT -> bookingRepository.findByBooker_IdAndStartIsBeforeAndEndIsAfter(userId, currentDateTime, currentTime, sort);
-            case PAST -> bookingRepository.findByBooker_IdAndEndIsBefore(userId, currentDateTime, sort);
-            case FUTURE -> bookingRepository.findByBooker_IdAndStartIsAfter(userId, currentDateTime, sort);
-            case WAITING -> bookingRepository.findByBooker_IdAndStatus(userId, Status.REJECTED, sort);
-            case REJECTED -> bookingRepository.findByBooker_IdAndStatus(userId, Status.REJECTED, sort);
-            default -> throw new NotFoundException("Неизвестный state: " + bookingState);
-        };
-* */
         Mockito.when(bookingRepository
                         .findByBooker_IdAndStatus(
                                 ArgumentMatchers.eq(bookerId),
@@ -299,8 +282,7 @@ Sort sort = Sort.by("start").descending();
 
         User booker = User.builder().id(1).name("booker").email("@booker.com").build();
 
-        User owner =User.builder().id(1).name("owner").email("@owner.com").build();
-                //User.builder().id(1).name("owner").email("@owner.com").build();
+        User owner = User.builder().id(1).name("owner").email("@owner.com").build();
 
         Integer ownerId = owner.getId();
 
