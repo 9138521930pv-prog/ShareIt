@@ -47,7 +47,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @Transactional
         public ItemDto updateItem(ItemDtoUpdate itemDtoRequest, Integer userId, Integer itemId) {
-            if (!userRepository.existsById(userId)) {
+            if (userRepository.existsById(userId)) {
                 throw new NotFoundException("User not found");
                }
         Item item = itemRepository.findById(itemId)
