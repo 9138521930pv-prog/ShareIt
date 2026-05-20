@@ -50,7 +50,7 @@ public class ItemServiceImpl implements ItemService {
             if (!userRepository.existsById(userId)) {
                 throw new NotFoundException("User not found");
                }
-			   
+            
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(() -> new NotFoundException("Item not found"));
 
