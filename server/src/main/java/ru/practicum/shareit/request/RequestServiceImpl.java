@@ -46,7 +46,7 @@ public class RequestServiceImpl implements RequestService {
 
         if (requestsList.isEmpty()) {
             log.error("Список запросов пуст или не найден.");
-            throw new NotFoundException("Список запросов пуст или не найден.");
+            return Collections.emptyList();
         }
 
         List<ItemRequestDto> requestsDtoList = new ArrayList<>();
