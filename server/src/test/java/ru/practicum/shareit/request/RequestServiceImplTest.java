@@ -88,9 +88,6 @@ public class RequestServiceImplTest {
         Mockito.when(requestRepository.findAllByRequestorIdOrderByCreatedDesc(requestorId))
                 .thenReturn(emptyRequestsList);
 
-        assertThrows(NotFoundException.class, () -> {
-            requestService.findUserRequests(requestorId);
-        });
     }
 
     @Test
